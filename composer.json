@@ -1,0 +1,20 @@
+{
+    "name": "user/ap-ipedidos",
+    "autoload": {
+        "psr-4": {
+            "Src\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ronny2004",
+            "email": "ronnypallo8@gmail.com"
+        }
+    ],
+    "require": {
+        "slim/slim": "4.*",
+        "slim/psr7": "^1.7",
+        "monolog/monolog": "^3.8",
+        "firebase/php-jwt": "^6.10"
+    }
+}
