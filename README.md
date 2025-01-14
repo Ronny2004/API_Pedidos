@@ -24,29 +24,25 @@ bash
 Copy code
 cd APIpedidos
 composer install
-Este comando instalará las dependencias listadas en el archivo composer.json, incluyendo:
 
+Este comando instalará las dependencias listadas en el archivo composer.json, incluyendo:
 Slim Framework: Un micro-framework para construir APIs en PHP.
 Slim PSR-7: Implementación de PSR-7 (interfaz de HTTP).
 Monolog: Para el manejo de logs.
 Dotenv: Para gestionar variables de entorno.
 PHP-fig/psr-15: Para manejar middleware.
 PHP-fig/psr-7: Para trabajar con objetos de solicitud y respuesta.
-Paso 3: Configurar la base de datos
-Configura tu base de datos en el archivo .env (si es que usas variables de entorno para gestionar la configuración de la base de datos). Si no estás utilizando variables de entorno, asegúrate de actualizar la configuración de la base de datos en el archivo config/database.php.
 
-bash
-Copy code
+Paso 3: Configurar la base de datos
+Configura tu base de datos en el archivo .env (si es que usas variables de entorno para gestionar la configuración de la base de datos). Si no estás utilizando variables de entorno, asegúrate de actualizar la configuración de la base de datos en el archivo config/database.php:
 DB_HOST=localhost
 DB_PORT=3306
 DB_NAME=nombre_de_tu_base_de_datos
 DB_USER=usuario
 DB_PASSWORD=contraseña
+
 Paso 4: Ejecutar el servidor
 Una vez que hayas configurado todo, puedes ejecutar el servidor incorporado de PHP para probar la API:
-
-bash
-Copy code
 php -S localhost:8000 -t public
 Esto levantará un servidor local en el puerto 8000. Ahora podrás acceder a la API en http://localhost:8000.
 
@@ -75,9 +71,6 @@ Si deseas contribuir al proyecto, siéntete libre de hacer un fork del repositor
 Licencia
 Este proyecto está licenciado bajo la Licencia MIT. Para más detalles, revisa el archivo LICENSE.
 
-markdown
-Copy code
-
 ### Dependencias clave:
 
 1. **Slim Framework**: `slim/slim`
@@ -97,5 +90,3 @@ Copy code
 
 6. **PHP-fig/psr-7**: `php-fig/psr-7`
    - Interfaz estándar para el manejo de objetos de solicitud y respuesta HTTP.
-
-Este `README.md` proporciona instrucciones detalladas sobre cómo instalar y ejecutar tu API, configurarla y contribuir al proyecto.
