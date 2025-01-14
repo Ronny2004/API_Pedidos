@@ -1,6 +1,3 @@
-
-markdown
-Copy code
 # API Pedidos
 
 Esta es una API RESTful para gestionar usuarios, productos y pedidos. Está desarrollada utilizando PHP con el framework Slim y requiere ciertas dependencias para funcionar correctamente.
