@@ -1,0 +1,10 @@
+# Directorios y archivos de dependencias
+/vendor/
+/node_modules/
+
+# Archivos de configuración locales
+.env
+.vscode/
+
+# Archivos de logs
+*.log
