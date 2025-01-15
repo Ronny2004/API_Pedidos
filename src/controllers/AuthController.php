@@ -8,6 +8,8 @@ use Database;
 use Dotenv\Dotenv;
 use Firebase\JWT\ExpiredException;
 use Firebase\JWT\SignatureInvalidException;
+use Firebase\JWT\Key;
+use Psr\Http\Server\RequestHandlerInterface;
 
 class AuthController {
     private $db;
@@ -60,36 +62,37 @@ class AuthController {
 
         return $response->withHeader('Content-Type', 'application/json');
     }
-
-    public function verificarJWT(Request $request, Response $response, $next) {
-        $headers = $request->getHeaders();
-        $authorizationHeader = $headers['Authorization'][0] ?? null;
+    public function verificarJWT(Request $request, RequestHandlerInterface $handler): Response {
+        $authorizationHeader = $request->getHeaderLine('Authorization');
     
         // Verificación explícita del tipo de autorización
         if ($authorizationHeader && strpos($authorizationHeader, 'Bearer ') === 0) {
             $token = str_replace('Bearer ', '', $authorizationHeader);
     
             try {
-                // No es necesario pasar los encabezados por referencia
-                $decoded = JWT::decode($token, $this->secretKey);
+                $decoded = JWT::decode($token, new Key($this->secretKey, 'HS256'));
                 $request = $request->withAttribute('usuario', $decoded);
-                $response = $next($request, $response);
+    
+                // Corrección: Usar $handler en lugar de $next
+                return $handler->handle($request);
             } catch (ExpiredException $e) {
+                $response = new \Slim\Psr7\Response();
                 $response->getBody()->write(json_encode(['error' => 'Token expirado']));
                 return $response->withHeader('Content-Type', 'application/json')->withStatus(401);
             } catch (SignatureInvalidException $e) {
+                $response = new \Slim\Psr7\Response();
                 $response->getBody()->write(json_encode(['error' => 'Firma del token inválida']));
                 return $response->withHeader('Content-Type', 'application/json')->withStatus(401);
             } catch (\Exception $e) {
+                $response = new \Slim\Psr7\Response();
                 $response->getBody()->write(json_encode(['error' => 'Token inválido']));
                 return $response->withHeader('Content-Type', 'application/json')->withStatus(401);
             }
         } else {
+            $response = new \Slim\Psr7\Response();
             $response->getBody()->write(json_encode(['error' => 'Token no proporcionado o formato incorrecto']));
             return $response->withHeader('Content-Type', 'application/json')->withStatus(401);
         }
-    
-        return $response;
-    }
+    }    
     
 }

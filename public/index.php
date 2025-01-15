@@ -29,25 +29,25 @@ $pedidoController = new PedidoController();
 $app->post('/login', [$authController, 'login']);
 
 // Rutas de usuarios (requieren autenticación JWT)
-$app->post('/usuarios', [$authController, 'verificarJWT'], [$usuarioController, 'create']);
-$app->get('/usuarios', [$authController, 'verificarJWT'], [$usuarioController, 'getAll']);
-$app->get('/usuarios/{id}', [$authController, 'verificarJWT'], [$usuarioController, 'getById']);
-$app->put('/usuarios/{id}', [$authController, 'verificarJWT'], [$usuarioController, 'update']);
-$app->delete('/usuarios/{id}', [$authController, 'verificarJWT'], [$usuarioController, 'delete']);
+$app->post('/usuarios', [$usuarioController, 'create'])->add([$authController, 'verificarJWT']);
+$app->get('/usuarios', [$usuarioController, 'getAll'])->add([$authController, 'verificarJWT']);
+$app->get('/usuarios/{id}', [$usuarioController, 'getById'])->add([$authController, 'verificarJWT']);
+$app->put('/usuarios/{id}', [$usuarioController, 'update'])->add([$authController, 'verificarJWT']);
+$app->delete('/usuarios/{id}', [$usuarioController, 'delete'])->add([$authController, 'verificarJWT']);
 
 // Rutas para la API de productos (requieren autenticación JWT)
-$app->post('/productos', [$authController, 'verificarJWT'], [$productoController, 'create']);
-$app->get('/productos', [$authController, 'verificarJWT'], [$productoController, 'getAll']);
-$app->get('/productos/{id}', [$authController, 'verificarJWT'], [$productoController, 'getById']);
-$app->put('/productos/{id}', [$authController, 'verificarJWT'], [$productoController, 'update']);
-$app->delete('/productos/{id}', [$authController, 'verificarJWT'], [$productoController, 'delete']);
+$app->post('/productos', [$productoController, 'create'])->add([$authController, 'verificarJWT']);
+$app->get('/productos', [$productoController, 'getAll'])->add([$authController, 'verificarJWT']);
+$app->get('/productos/{id}', [$productoController, 'getById'])->add([$authController, 'verificarJWT']);
+$app->put('/productos/{id}', [$productoController, 'update'])->add([$authController, 'verificarJWT']);
+$app->delete('/productos/{id}', [$productoController, 'delete'])->add([$authController, 'verificarJWT']);
 
 // Rutas para la API de pedidos (requieren autenticación JWT)
-$app->post('/pedidos', [$authController, 'verificarJWT'], [$pedidoController, 'create']);
-$app->get('/pedidos', [$authController, 'verificarJWT'], [$pedidoController, 'getAll']);
-$app->get('/pedidos/{id}', [$authController, 'verificarJWT'], [$pedidoController, 'getById']);
-$app->put('/pedidos/{id}', [$authController, 'verificarJWT'], [$pedidoController, 'updateStatus']);
-$app->delete('/pedidos/{id}', [$authController, 'verificarJWT'], [$pedidoController, 'delete']);
+$app->post('/pedidos', [$pedidoController, 'create'])->add([$authController, 'verificarJWT']);
+$app->get('/pedidos', [$pedidoController, 'getAll'])->add([$authController, 'verificarJWT']);
+$app->get('/pedidos/{id}', [$pedidoController, 'getById'])->add([$authController, 'verificarJWT']);
+$app->put('/pedidos/{id}', [$pedidoController, 'updateStatus'])->add([$authController, 'verificarJWT']);
+$app->delete('/pedidos/{id}', [$pedidoController, 'delete'])->add([$authController, 'verificarJWT']);
 
 // Ejecutar la aplicación
 $app->run();
