@@ -33,11 +33,16 @@ PHP-fig/psr-7: Para trabajar con objetos de solicitud y respuesta.
 
 Paso 3: Configurar la base de datos
 Configura tu base de datos en el archivo .env (si es que usas variables de entorno para gestionar la configuración de la base de datos). Si no estás utilizando variables de entorno, asegúrate de actualizar la configuración de la base de datos en el archivo config/database.php:
+# Configuración de la base de datos
 DB_HOST=localhost
 DB_PORT=3306
 DB_NAME=restaurante
 DB_USER=root
 DB_PASSWORD=
+
+# Clave secreta para JWT
+JWT_SECRET_KEY=Ronny292004
+
 
 Paso 4: Ejecutar el servidor
 Una vez que hayas configurado todo, puedes ejecutar el servidor incorporado de PHP para probar la API:
