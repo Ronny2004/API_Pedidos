@@ -16,12 +16,10 @@ Asegúrate de tener los siguientes requisitos instalados en tu entorno de desarr
 Primero, clona el repositorio en tu máquina local:
 
 ```bash
-git clone https://github.com/Ronny2004/API_Pedidos.git
+git clone -b master https://github.com/Ronny2004/API_Pedidos.git
+
 Paso 2: Instalar dependencias
 Navega al directorio del proyecto y ejecuta el siguiente comando para instalar todas las dependencias necesarias:
-
-bash
-Copy code
 cd APIpedidos
 composer install
 
@@ -37,9 +35,9 @@ Paso 3: Configurar la base de datos
 Configura tu base de datos en el archivo .env (si es que usas variables de entorno para gestionar la configuración de la base de datos). Si no estás utilizando variables de entorno, asegúrate de actualizar la configuración de la base de datos en el archivo config/database.php:
 DB_HOST=localhost
 DB_PORT=3306
-DB_NAME=nombre_de_tu_base_de_datos
-DB_USER=usuario
-DB_PASSWORD=contraseña
+DB_NAME=restaurante
+DB_USER=root
+DB_PASSWORD=
 
 Paso 4: Ejecutar el servidor
 Una vez que hayas configurado todo, puedes ejecutar el servidor incorporado de PHP para probar la API:
