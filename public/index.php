@@ -1,5 +1,17 @@
 <?php
 
+// Permitir CORS para acceso desde otros orígenes
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
+
+// Manejar solicitudes OPTIONS (pre-flight) para CORS
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
+
+
 use Slim\Factory\AppFactory;
 use Src\Controllers\AuthController;
 use Src\Controllers\UsuarioController;
